@@ -15,4 +15,3 @@ you can run the solution for a given day with the following script by passing in
 ```
 ./run-solution.sh 3 3-1
 ```
-```
