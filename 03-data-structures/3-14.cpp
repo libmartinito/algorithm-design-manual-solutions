@@ -20,19 +20,19 @@ struct LeafNode {
   LeafNode(int val) : val(val), left(nullptr), right(nullptr) {}
 };
 
-void insert_bst_node(int val, LeafNode *curr) {
+void insertBSTNode(int val, LeafNode *curr) {
   LeafNode *&next_node = val < curr->val ? curr->left : curr->right;
 
   if (next_node == nullptr) {
     next_node = new LeafNode(val);
   } else {
-    insert_bst_node(val, next_node);
+    insertBSTNode(val, next_node);
   }
 
   return;
 }
 
-void insert_doubly_linked_list_node(int val, Node *curr) {
+void insertDoublyLinkedListNode(int val, Node *curr) {
   if (curr->val == -1) {
     curr->val = val;
     return;
@@ -58,31 +58,31 @@ void insert_doubly_linked_list_node(int val, Node *curr) {
   return;
 }
 
-void add_leaf_nodes_to_list(LeafNode *tree_node, Node *&list_node) {
+void addLeafNodesToList(LeafNode *tree_node, Node *&list_node) {
   if (tree_node == nullptr) {
     return;
   }
 
-  add_leaf_nodes_to_list(tree_node->left, list_node);
-  insert_doubly_linked_list_node(tree_node->val, list_node);
-  add_leaf_nodes_to_list(tree_node->right, list_node);
+  addLeafNodesToList(tree_node->left, list_node);
+  insertDoublyLinkedListNode(tree_node->val, list_node);
+  addLeafNodesToList(tree_node->right, list_node);
 
   return;
 }
 
 int main() {
   LeafNode *first_tree_head{new LeafNode(2)};
-  insert_bst_node(1, first_tree_head);
-  insert_bst_node(3, first_tree_head);
+  insertBSTNode(1, first_tree_head);
+  insertBSTNode(3, first_tree_head);
 
   LeafNode *second_tree_head{new LeafNode(5)};
-  insert_bst_node(4, second_tree_head);
-  insert_bst_node(6, second_tree_head);
+  insertBSTNode(4, second_tree_head);
+  insertBSTNode(6, second_tree_head);
 
   Node *list_head{new Node()};
 
-  add_leaf_nodes_to_list(first_tree_head, list_head);
-  add_leaf_nodes_to_list(second_tree_head, list_head);
+  addLeafNodesToList(first_tree_head, list_head);
+  addLeafNodesToList(second_tree_head, list_head);
 
   std::string expected_output{""};
 

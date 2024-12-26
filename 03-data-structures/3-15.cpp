@@ -13,13 +13,13 @@ struct LeafNode {
   LeafNode(int val) : val(val), left(nullptr), right(nullptr) {}
 };
 
-void insert_bst_node(int val, LeafNode *curr) {
+void insertBSTNode(int val, LeafNode *curr) {
   LeafNode *&next_node = val < curr->val ? curr->left : curr->right;
 
   if (next_node == nullptr) {
     next_node = new LeafNode(val);
   } else {
-    insert_bst_node(val, next_node);
+    insertBSTNode(val, next_node);
   }
 
   return;
@@ -49,7 +49,7 @@ LeafNode *getBalancedTree(LeafNode *head) {
       continue;
     }
 
-    insert_bst_node(tree_elements[i], balanced_tree_head);
+    insertBSTNode(tree_elements[i], balanced_tree_head);
   }
 
   return balanced_tree_head;
@@ -57,8 +57,8 @@ LeafNode *getBalancedTree(LeafNode *head) {
 
 int main() {
   LeafNode *unbalanced_tree_head{new LeafNode(6)};
-  insert_bst_node(7, unbalanced_tree_head);
-  insert_bst_node(8, unbalanced_tree_head);
+  insertBSTNode(7, unbalanced_tree_head);
+  insertBSTNode(8, unbalanced_tree_head);
 
   LeafNode *balanced_tree_head{getBalancedTree(unbalanced_tree_head)};
   if (balanced_tree_head->val == 7 && balanced_tree_head->left->val == 6 &&
